@@ -63,7 +63,7 @@ def main():
         layout="wide"
     )
 
-    st.sidebar.image("assets/img/8zeros_Logo.png", width=300, caption="Logo")
+    st.sidebar.image("assets/img/logo_300dpi.png", width=300, caption="Logo")
 
     frequency = st.sidebar.slider("Frequency (Hz)", 0.0, 22050.0, 440.0)
     duration = st.sidebar.slider("Duration (s)", 0.0, 10.0, 1.0)
