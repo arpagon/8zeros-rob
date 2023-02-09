@@ -1,5 +1,5 @@
 environment.yml
-assets/audios/generate
+assets/audios/generate/*.wav
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

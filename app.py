@@ -30,6 +30,7 @@ __status__ = "beta"
 import numpy as np
 import scipy.io.wavfile
 import streamlit as st
+import streamlit.components.v1 as components
 
 def generate_sine_wave(frequency, duration, sample_rate):
     """Generates a sine wave with the given frequency, duration, and sample rate.
@@ -62,6 +63,8 @@ def main():
         page_icon=":microphone:",
         layout="wide"
     )
+    
+    tab1, tab2 = st.tabs(["Generate", "DAW"])
 
     st.sidebar.image("assets/img/logo_300dpi.png", width=300, caption="Logo")
 
@@ -71,18 +74,24 @@ def main():
 
     wave = generate_sine_wave(frequency, duration, sample_rate)
 
-    # add text box to enter a prompt
-    prompt = st.text_input("Enter a prompt")
+    with tab1:
+        st.header("Generate sine wave")
 
-    if st.button("Generate"):
-        filename = "assets/audios/generate/sine_wave_{:.0f}Hz_{:.0f}s.wav".format(frequency, duration)
-        write_wave_file(filename, wave, sample_rate)
-        st.success("Generated wave file: {}".format(filename))
+        # add text box to enter a prompt
+        prompt = st.text_input("Enter a prompt")
 
-        # add st.audio to play the wave
-        st.audio(filename, format="audio/wav", start_time=0)
+        if st.button("Generate"):
+            filename = "assets/audios/generate/sine_wave_{:.0f}Hz_{:.0f}s.wav".format(frequency, duration)
+            write_wave_file(filename, wave, sample_rate)
+            st.success("Generated wave file: {}".format(filename))
 
-
+            # add st.audio to play the wave
+            st.audio(filename, format="audio/wav", start_time=0)
+    
+    with tab2:
+        # add iframe component
+        st.header("DAW")
+        components.iframe("https://gridsound.com/daw/",height=800)
 
 if __name__ == '__main__':
     main()
