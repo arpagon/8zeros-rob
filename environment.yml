@@ -1,0 +1,13 @@
+name: 8zer0s
+channels:
+  - conda-forge
+dependencies:
+  - ffmpeg
+  - python
+  - pip
+  - ipython
+  - streamlit
+  - scipy
+  - numpy
+  - pip:
+    - git+https://github.com/openai/whisper.git
