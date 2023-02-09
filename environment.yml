@@ -9,5 +9,3 @@ dependencies:
   - streamlit
   - scipy
   - numpy
-  - pip:
-    - git+https://github.com/openai/whisper.git
