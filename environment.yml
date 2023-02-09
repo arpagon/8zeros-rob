@@ -1,8 +1,0 @@
-name: 8zer0s
-channels:
-  - conda-forge
-dependencies:
-  - streamlit
-  - scipy
-  - numpy
-  - poetry
