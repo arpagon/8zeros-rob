@@ -5,3 +5,4 @@ dependencies:
   - streamlit
   - scipy
   - numpy
+  - poetry

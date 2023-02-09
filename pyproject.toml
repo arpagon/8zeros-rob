@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "8zeros-rob"
+version = "0.1.0"
+description = ""
+authors = ["Sebastian Rojo <arpagon@gmail.com>"]
+readme = "README.md"
+packages = [{include = "8zeros_rob"}]
+
+[tool.poetry.dependencies]
+python = "~3.11"
+streamlit = "^1.17.0"
+scipy = "^1.10.0"
+numpy = "^1.24.2"
+poetry = "^1.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
