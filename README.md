@@ -4,7 +4,7 @@ MVP for DJ Rob for 8zeros
 
 ### Create mamba env
 ```bash=
-mamba env create python=3.10 -f environment.yml
+mamba env create python=3.9 -f environment.yml
 ```
 
 #### Mamba update Enviroment

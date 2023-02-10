@@ -21,7 +21,10 @@ dependencies:
   - pytorch=*=*cuda*
   - pysoundfile
   - sox
-  - streamlit
   - torchaudio
   - transformers
   - cudatoolkit
+  - pip
+  - pip:
+    - replicate
+    - streamlit>=1.18.0

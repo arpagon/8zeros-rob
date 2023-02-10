@@ -31,6 +31,49 @@ import numpy as np
 import scipy.io.wavfile
 import streamlit as st
 import streamlit.components.v1 as components
+import replicate
+
+model = replicate.models.get("riffusion/riffusion")
+version = model.versions.get("8cf61ea6c56afd61d8f5b9ffd14d7c216c0a93844ce2d82ac1c9ecc9c7f24e05")
+
+def genrate_riffusion(prompt_a):
+    """Generates a wave with the given prompt
+
+    Args:
+        prompt_a (string): The prompt for the first wave.
+
+    Returns:
+        output(json): A json object representing the generated wave.
+    """
+    inputs = {
+        # The prompt for your audio
+        'prompt_a': prompt_a,
+
+        # How much to transform input spectrogram
+        # Range: 0 to 1
+        'denoising': 0.75,
+
+        # The second prompt to interpolate with the first, leave blank if no
+        # interpolation
+        # 'prompt_b': ...,
+
+        # Interpolation alpha if using two prompts. A value of 0 uses prompt_a
+        # fully, a value of 1 uses prompt_b fully
+        # Range: 0 to 1
+        'alpha': 0.5,
+
+        # Number of steps to run the diffusion model
+        # Minimum: 1
+        'num_inference_steps': 50,
+
+        # Seed spectrogram to use
+        'seed_image_id': "vibes",
+    }
+
+    # https://replicate.com/riffusion/riffusion/versions/8cf61ea6c56afd61d8f5b9ffd14d7c216c0a93844ce2d82ac1c9ecc9c7f24e05#output-schema
+    output = version.predict(**inputs)
+    return output
+
 
 def generate_sine_wave(frequency, duration, sample_rate):
     """Generates a sine wave with the given frequency, duration, and sample rate.
@@ -80,18 +123,29 @@ def main():
         # add text box to enter a prompt
         prompt = st.text_input("Enter a prompt")
 
-        if st.button("Generate"):
+        if st.button("Generate Wave"):
             filename = "assets/audios/generate/sine_wave_{:.0f}Hz_{:.0f}s.wav".format(frequency, duration)
             write_wave_file(filename, wave, sample_rate)
             st.success("Generated wave file: {}".format(filename))
 
             # add st.audio to play the wave
             st.audio(filename, format="audio/wav", start_time=0)
+        
+        if st.button("Generate via AI"):
+            output=genrate_riffusion(prompt_a=prompt)
+            st.success(output)
+
+            # add st.audio to play the wave
+            # st.audio(filename, format="audio/wav", start_time=0)
     
     with tab2:
         # add iframe component
         st.header("DAW")
         components.iframe("https://gridsound.com/daw/",height=800)
+
+    #data = requests.get("https://jsonplaceholder.typicode.com/todos/1").json()
+
+    #st.write(data)
 
 if __name__ == '__main__':
     main()
