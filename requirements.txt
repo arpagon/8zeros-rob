@@ -1,5 +1,3 @@
-numpy=1.24.2=py39h7360e5f_0
-replicate=0.4.0=pypi_0
 scipy=1.10.0
 streamlit=1.18.1
 numpy=1.24.2
