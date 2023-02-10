@@ -1,0 +1,27 @@
+name: 8zer0s
+channels:
+  - conda-forge
+  - pytorch
+dependencies:
+  - python=3.9
+  - poetry
+  - ffmpeg
+  - libsndfile
+  - accelerate
+  - argh
+  - dacite
+  - diffusers
+  - flask
+  - flask_cors
+  - numpy
+  - pillow
+  - plotly
+  - pydub
+  - scipy
+  - pytorch=*=*cuda*
+  - pysoundfile
+  - sox
+  - streamlit
+  - torchaudio
+  - transformers
+  - cudatoolkit
